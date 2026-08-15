@@ -1,13 +1,13 @@
 package com.example.jobrecommendation.controller;
 
+import com.example.jobrecommendation.model.RecommendationResponse;
 import com.example.jobrecommendation.service.JobService;
-import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Map;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/jobs")
+@CrossOrigin(origins = "*")
 public class JobController {
 
     private final JobService jobService;
@@ -17,9 +17,9 @@ public class JobController {
     }
 
     @GetMapping("/recommendations/{userId}")
-    public List<Map<String, Object>> getRecommendedJobs(
+    public RecommendationResponse getRecommendations(
             @PathVariable Long userId) {
 
-        return jobService.getRecommendedJobs(userId);
+        return jobService.getRecommendations(userId);
     }
 }
